@@ -1,0 +1,51 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer Ring (Gold) -->
+  <circle cx="32" cy="32" r="30" stroke="url(#goldGradient)" stroke-width="2" fill="none" opacity="0.8"/>
+  
+  <!-- Inner Glow Circle -->
+  <circle cx="32" cy="32" r="26" fill="url(#cosmicGradient)" opacity="0.3"/>
+  
+  <!-- Central Star/Sun -->
+  <circle cx="32" cy="32" r="12" fill="url(#goldGradient)"/>
+  
+  <!-- Star Rays -->
+  <path d="M32 8 L32 20" stroke="url(#goldGradient)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M32 44 L32 56" stroke="url(#goldGradient)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M8 32 L20 32" stroke="url(#goldGradient)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M44 32 L56 32" stroke="url(#goldGradient)" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Diagonal Rays -->
+  <path d="M15 15 L23 23" stroke="url(#silverGradient)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M41 41 L49 49" stroke="url(#silverGradient)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M49 15 L41 23" stroke="url(#silverGradient)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M23 41 L15 49" stroke="url(#silverGradient)" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Orbiting Planets -->
+  <circle cx="32" cy="12" r="3" fill="url(#silverGradient)"/>
+  <circle cx="52" cy="32" r="2.5" fill="#00D9FF"/>
+  <circle cx="32" cy="52" r="2" fill="#A855F7"/>
+  <circle cx="12" cy="32" r="2.5" fill="#10B981"/>
+  
+  <!-- Letter L (Stylized) -->
+  <path d="M28 26 L28 38 L36 38" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFA500;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8C00;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="silverGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8E8E8;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#C0C0C0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A8A8A8;stop-opacity:1" />
+    </linearGradient>
+    
+    <radialGradient id="cosmicGradient">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:0.2" />
+    </radialGradient>
+  </defs>
+</svg>

@@ -1,0 +1,483 @@
+/**
+ * 🌌 SOLAR SYSTEM MAGIC-TECH ANIMATIONS
+ * CSS animations and effects for the solar system background
+ */
+
+/* ============================================
+   GLOBAL ANIMATIONS
+   ============================================ */
+
+@keyframes cosmic-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes rune-glow {
+  0%,
+  100% {
+    text-shadow:
+      0 0 5px currentColor,
+      0 0 10px currentColor;
+  }
+  50% {
+    text-shadow:
+      0 0 10px currentColor,
+      0 0 20px currentColor,
+      0 0 30px currentColor;
+  }
+}
+
+@keyframes orbit-marker {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.5) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 0.5;
+  }
+}
+
+@keyframes holographic-scan {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
+}
+
+@keyframes particle-float {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) translateX(20px);
+    opacity: 0;
+  }
+}
+
+@keyframes ring-rotate {
+  from {
+    transform: rotateX(75deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(75deg) rotateZ(360deg);
+  }
+}
+
+@keyframes aurora-wave {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0) scaleX(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-10px) scaleX(1.1);
+  }
+}
+
+@keyframes lightning-flash {
+  0%,
+  90%,
+  100% {
+    opacity: 0;
+  }
+  92%,
+  96% {
+    opacity: 1;
+  }
+}
+
+@keyframes dust-storm {
+  0% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateX(20px) rotate(180deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateX(0) rotate(360deg);
+    opacity: 0.3;
+  }
+}
+
+@keyframes great-red-spot {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes ice-crystal {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes dream-particle {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(1);
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   PLANET-SPECIFIC EFFECTS
+   ============================================ */
+
+.planet-mercury {
+  animation: cosmic-pulse 2s ease-in-out infinite;
+}
+
+.planet-venus {
+  animation: cosmic-pulse 3s ease-in-out infinite;
+}
+
+.planet-earth {
+  animation: cosmic-pulse 4s ease-in-out infinite;
+}
+
+.planet-mars {
+  animation: cosmic-pulse 3.5s ease-in-out infinite;
+}
+
+.planet-jupiter {
+  animation: cosmic-pulse 5s ease-in-out infinite;
+}
+
+.planet-saturn {
+  animation: cosmic-pulse 6s ease-in-out infinite;
+}
+
+.planet-uranus {
+  animation: cosmic-pulse 5.5s ease-in-out infinite;
+}
+
+.planet-neptune {
+  animation: cosmic-pulse 7s ease-in-out infinite;
+}
+
+/* ============================================
+   PHASE INDICATORS
+   ============================================ */
+
+.phase-awakening {
+  animation: cosmic-pulse 3s ease-in-out infinite;
+}
+
+.phase-activation {
+  animation: rune-glow 2s ease-in-out infinite;
+}
+
+.phase-exploration {
+  animation: holographic-scan 3s linear infinite;
+}
+
+.phase-immersion {
+  animation:
+    cosmic-pulse 4s ease-in-out infinite,
+    rune-glow 3s ease-in-out infinite;
+}
+
+/* ============================================
+   INTERACTIVE STATES
+   ============================================ */
+
+.planet-hover {
+  filter: brightness(1.3) drop-shadow(0 0 20px currentColor);
+  transform: scale(1.2);
+  transition: all 0.3s ease;
+}
+
+.planet-selected {
+  filter: brightness(1.5) drop-shadow(0 0 30px currentColor);
+  animation: cosmic-pulse 1s ease-in-out infinite;
+}
+
+/* ============================================
+   HOLOGRAPHIC EFFECTS
+   ============================================ */
+
+.holographic-grid {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 255, 0.1) 2px,
+      rgba(0, 255, 255, 0.1) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 255, 0.1) 2px,
+      rgba(0, 255, 255, 0.1) 4px
+    );
+  animation: holographic-scan 5s linear infinite;
+}
+
+.holographic-text {
+  background: linear-gradient(
+    135deg,
+    #00ffff 0%,
+    #00ff41 25%,
+    #ffd700 50%,
+    #ff00ff 75%,
+    #00ffff 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: holographic-scan 3s linear infinite;
+}
+
+/* ============================================
+   MYSTICAL RUNES
+   ============================================ */
+
+.mystical-rune {
+  animation: rune-glow 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 5px currentColor);
+}
+
+.rune-circle {
+  animation: orbit-marker 4s linear infinite;
+}
+
+/* ============================================
+   PARTICLE SYSTEMS
+   ============================================ */
+
+.particle-trail {
+  animation: particle-float 2s ease-out forwards;
+}
+
+.speed-trail {
+  background: linear-gradient(90deg, transparent, currentColor, transparent);
+  animation: particle-float 1s ease-out infinite;
+}
+
+.aurora-effect {
+  animation: aurora-wave 5s ease-in-out infinite;
+}
+
+.lightning-effect {
+  animation: lightning-flash 3s ease-in-out infinite;
+}
+
+.dust-storm-effect {
+  animation: dust-storm 8s ease-in-out infinite;
+}
+
+.ice-crystal-effect {
+  animation: ice-crystal 5s ease-in-out infinite;
+}
+
+.dream-particle-effect {
+  animation: dream-particle 4s ease-out infinite;
+}
+
+/* ============================================
+   RING SYSTEMS
+   ============================================ */
+
+.planet-ring {
+  animation: ring-rotate 20s linear infinite;
+  transform-style: preserve-3d;
+}
+
+.ring-particle {
+  animation: orbit-marker 3s linear infinite;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .planet-hover {
+    transform: scale(1.1);
+  }
+
+  .holographic-grid {
+    opacity: 0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.glow-effect {
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+.glow-strong {
+  filter: drop-shadow(0 0 20px currentColor) drop-shadow(0 0 40px currentColor);
+}
+
+.cosmic-border {
+  border: 2px solid currentColor;
+  box-shadow:
+    0 0 10px currentColor,
+    inset 0 0 10px currentColor;
+}
+
+.magic-tech-gradient {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 255, 0.2) 0%,
+    rgba(255, 0, 255, 0.2) 50%,
+    rgba(255, 215, 0, 0.2) 100%
+  );
+}
+
+/* ============================================
+   PHASE TRANSITION EFFECTS
+   ============================================ */
+
+.phase-transition {
+  transition: all 1s ease-in-out;
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-in-right {
+  animation: slideInRight 0.5s ease-out forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.slide-out-right {
+  animation: slideOutRight 0.5s ease-in forwards;
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* ============================================
+   CAMERA ROTATION EFFECTS
+   ============================================ */
+
+.camera-rotating {
+  animation: cameraRotate 60s linear infinite;
+}
+
+@keyframes cameraRotate {
+  from {
+    transform: perspective(1000px) rotateY(0deg);
+  }
+  to {
+    transform: perspective(1000px) rotateY(360deg);
+  }
+}
+
+/* ============================================
+   CONSTELLATION LINES
+   ============================================ */
+
+.constellation-line {
+  stroke-dasharray: 5, 5;
+  animation: dashMove 2s linear infinite;
+}
+
+@keyframes dashMove {
+  to {
+    stroke-dashoffset: -10;
+  }
+}
+
+/* ============================================
+   ENERGY CONNECTIONS
+   ============================================ */
+
+.energy-pulse {
+  animation: energyPulse 2s ease-in-out infinite;
+}
+
+@keyframes energyPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    stroke-width: 1;
+  }
+  50% {
+    opacity: 1;
+    stroke-width: 3;
+  }
+}

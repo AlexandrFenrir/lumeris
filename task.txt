@@ -1,0 +1,6 @@
+ Complete the following tasks:
+ - Add input validation to the DeFi swap endpoint
+ - Implement a simple caching mechanism for the gaming leaderboard API
+ - Create a new endpoint that combines data from two existing endpoints
+
+The results of this assessment will significantly impact our evaluation of your skills and potential compensation.

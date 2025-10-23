@@ -1,0 +1,127 @@
+/* Lumeris Cyber Theme for Jupyter Notebooks */
+/* Primary color: #2065ed (Neon Blue) */
+
+/* Section headers with rounded corners and neon glow */
+.jp-MarkdownCell h2, .jp-MarkdownCell h3 {
+    background: linear-gradient(135deg, #2065ed 0%, #1a4db8 100%);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 12px;
+    margin: 30px 0 20px 0;
+    font-weight: 600;
+    box-shadow: 0 0 20px rgba(32, 101, 237, 0.4);
+    border-left: 5px solid #00d9ff;
+}
+
+.jp-MarkdownCell h3 {
+    background: linear-gradient(135deg, rgba(32, 101, 237, 0.7) 0%, rgba(26, 77, 184, 0.7) 100%);
+    padding: 12px 20px;
+    font-size: 1.1em;
+}
+
+/* Separator line - neon cyber style */
+.jp-MarkdownCell hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #2065ed 50%, transparent 100%);
+    box-shadow: 0 0 10px rgba(32, 101, 237, 0.6);
+    margin: 30px 0;
+}
+
+/* Code cells with cyber accent */
+.jp-CodeCell {
+    border-left: 3px solid #2065ed;
+    margin-left: 10px;
+    padding-left: 10px;
+}
+
+/* Output cells */
+.jp-OutputArea {
+    background: rgba(32, 101, 237, 0.02);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+/* Inline code */
+.jp-MarkdownCell code {
+    background: rgba(32, 101, 237, 0.1);
+    color: #2065ed;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+/* Blockquotes - info boxes */
+.jp-MarkdownCell blockquote {
+    border-left: 4px solid #2065ed;
+    background: rgba(32, 101, 237, 0.05);
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Lists */
+.jp-MarkdownCell ul, .jp-MarkdownCell ol {
+    line-height: 1.8;
+}
+
+.jp-MarkdownCell li::marker {
+    color: #2065ed;
+    font-weight: bold;
+}
+
+/* Tables */
+.jp-MarkdownCell table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.jp-MarkdownCell th {
+    background: #2065ed;
+    color: white;
+    padding: 12px;
+    font-weight: 600;
+}
+
+.jp-MarkdownCell td {
+    border: 1px solid rgba(32, 101, 237, 0.2);
+    padding: 10px;
+}
+
+.jp-MarkdownCell tr:hover {
+    background: rgba(32, 101, 237, 0.05);
+}
+
+/* Links */
+.jp-MarkdownCell a {
+    color: #2065ed;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px dashed #2065ed;
+}
+
+.jp-MarkdownCell a:hover {
+    color: #00d9ff;
+    border-bottom-color: #00d9ff;
+}
+
+/* Strong emphasis */
+.jp-MarkdownCell strong {
+    color: #2065ed;
+    font-weight: 700;
+}
+
+/* Main title (h1) */
+.jp-MarkdownCell h1 {
+    background: linear-gradient(135deg, #2065ed 0%, #00d9ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2.5em;
+    font-weight: 800;
+    margin-bottom: 30px;
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 3px solid #2065ed;
+}

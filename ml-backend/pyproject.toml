@@ -1,0 +1,22 @@
+[project]
+name = "lumeris-ml-backend"
+version = "1.0.0"
+description = "ML/AI Backend for Lumeris DApp - Gaming Recommendations, Sentiment Analysis, and DeFi Predictions"
+authors = [{name = "devxmxina", email = "ingari.science@proton.me"}]
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn>=0.32.0",
+    "numpy>=2.0.0",
+    "pandas>=2.2.0",
+    "scikit-learn>=1.5.0",
+    "joblib>=1.4.0",
+    "pydantic>=2.9.0",
+    "python-multipart>=0.0.12",
+    "textblob>=0.18.0",
+    "nltk>=3.9.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

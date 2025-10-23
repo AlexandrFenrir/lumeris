@@ -1,0 +1,6 @@
+{
+    "python.defaultInterpreterPath": "${workspaceFolder}/ml-backend/.venv/bin/python",
+    "python.terminal.activateEnvironment": true,
+    "jupyter.kernels.filter": [],
+    "jupyter.notebookFileRoot": "${workspaceFolder}/ml-backend"
+}
