@@ -6,6 +6,13 @@ const {
   getLeaderboards,
   addTransaction,
 } = require("../data/mockData.js");
+const { validate } = require("../middlewares/validator.js");
+const {
+  swapSchema,
+  liquiditySchema,
+  removeLiquiditySchema,
+  stakingSchema
+} = require("../validators/defi.validator.js");
 
 const router = express.Router();
 
@@ -106,17 +113,10 @@ router.get("/leaderboard", (req, res) => {
   }
 });
 
-// Add liquidity to pool
-router.post("/pools/:id/add-liquidity", (req, res) => {
+// Add liquidity to pool - Enhanced with input validation
+router.post("/pools/:id/add-liquidity", validate(liquiditySchema), (req, res) => {
   try {
     const { userId, token0Amount, token1Amount, walletAddress } = req.body;
-
-    if (!userId || !token0Amount || !token1Amount || !walletAddress) {
-      return res.status(400).json({
-        success: false,
-        error: "Missing required fields",
-      });
-    }
 
     const pool = getDefiPoolById(req.params.id);
     if (!pool) {
@@ -166,17 +166,10 @@ router.post("/pools/:id/add-liquidity", (req, res) => {
   }
 });
 
-// Remove liquidity from pool
-router.post("/pools/:id/remove-liquidity", (req, res) => {
+// Remove liquidity from pool - Enhanced with input validation
+router.post("/pools/:id/remove-liquidity", validate(removeLiquiditySchema), (req, res) => {
   try {
     const { userId, lpTokens, walletAddress } = req.body;
-
-    if (!userId || !lpTokens || !walletAddress) {
-      return res.status(400).json({
-        success: false,
-        error: "Missing required fields",
-      });
-    }
 
     const pool = getDefiPoolById(req.params.id);
     if (!pool) {
@@ -227,8 +220,8 @@ router.post("/pools/:id/remove-liquidity", (req, res) => {
   }
 });
 
-// Swap tokens
-router.post("/swap", (req, res) => {
+// Swap tokens - Enhanced with comprehensive input validation
+router.post("/swap", validate(swapSchema), (req, res) => {
   try {
     const {
       userId,
@@ -240,10 +233,11 @@ router.post("/swap", (req, res) => {
       slippage,
     } = req.body;
 
-    if (!userId || !tokenIn || !tokenOut || !amountIn || !walletAddress) {
+    // Additional business logic validation
+    if (tokenIn === tokenOut) {
       return res.status(400).json({
         success: false,
-        error: "Missing required fields",
+        error: "Cannot swap the same token",
       });
     }
 
@@ -355,17 +349,10 @@ router.get("/yield-farming", (req, res) => {
   }
 });
 
-// Stake tokens for yield farming
-router.post("/yield-farming/:id/stake", (req, res) => {
+// Stake tokens for yield farming - Enhanced with input validation
+router.post("/yield-farming/:id/stake", validate(stakingSchema), (req, res) => {
   try {
     const { userId, amount, walletAddress, lockPeriod } = req.body;
-
-    if (!userId || !amount || !walletAddress) {
-      return res.status(400).json({
-        success: false,
-        error: "Missing required fields",
-      });
-    }
 
     // Mock staking
     const stakingResult = {

@@ -6,6 +6,10 @@ const {
   getNftCollections,
   getGovernanceProposals,
 } = require("../data/mockData.js");
+const { cache } = require("../middlewares/cache.js");
+const { timeouts } = require("../middlewares/timeout.js");
+const dashboardService = require("../services/dashboardService.js");
+const { CACHE_TTL, MESSAGES, ERRORS } = require("../config/constants.js");
 
 const router = express.Router();
 
@@ -476,6 +480,47 @@ router.get("/market-data", (req, res) => {
     res.status(500).json({
       success: false,
       error: "Failed to fetch market data",
+      message: error.message,
+    });
+  }
+});
+
+/**
+ * Combined User Dashboard Endpoint
+ * Combines data from gaming stats and DeFi portfolio endpoints
+ * Provides a comprehensive view of user activity across the platform
+ * Optimized with caching and timeout protection
+ * Data is fetched from MongoDB via dashboardService
+ */
+router.get("/user/:userId/dashboard",
+  timeouts.dashboard,
+  cache(CACHE_TTL.DASHBOARD),
+  async (req, res) => {
+  try {
+    const userId = req.params.userId;
+
+    // Fetch comprehensive dashboard data from database
+    const userDashboard = await dashboardService.getUserDashboard(userId);
+
+    if (!userDashboard) {
+      return res.status(404).json({
+        success: false,
+        error: ERRORS.USER_NOT_FOUND,
+        message: `No user found with ID: ${userId}`,
+      });
+    }
+
+    res.json({
+      success: true,
+      data: userDashboard,
+      timestamp: new Date().toISOString(),
+      message: MESSAGES.DASHBOARD_SUCCESS,
+    });
+  } catch (error) {
+    console.error("Error fetching user dashboard:", error);
+    res.status(500).json({
+      success: false,
+      error: "Failed to fetch user dashboard",
       message: error.message,
     });
   }

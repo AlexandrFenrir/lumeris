@@ -23,6 +23,9 @@ const { setupWebSocketHandlers } = require("./websocket/handlers.js");
 // Import mock data
 const { initializeMockData } = require("./data/mockData.js");
 
+// Import database connection
+const { connectDB, disconnectDB, getConnectionStatus } = require("./config/database.js");
+
 dotenv.config();
 
 const app = express();
@@ -77,11 +80,18 @@ app.use(morgan("combined"));
 
 // Health check endpoint
 app.get("/health", (req, res) => {
+  const dbStatus = getConnectionStatus();
   res.status(200).json({
     status: "OK",
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
     environment: process.env.NODE_ENV || "development",
+    database: {
+      connected: dbStatus.isConnected,
+      host: dbStatus.host,
+      name: dbStatus.name,
+      readyState: dbStatus.readyState,
+    },
   });
 });
 
@@ -120,20 +130,35 @@ app.use("*", (req, res) => {
   });
 });
 
-// Initialize mock data
-initializeMockData();
+// Initialize application
+const startServer = async () => {
+  try {
+    // Connect to MongoDB
+    await connectDB();
 
-// Start server
-server.listen(PORT, () => {
-  console.log(`🚀 Lumeris DApp Backend Server running on port ${PORT}`);
-  console.log(`📊 Health check: http://localhost:${PORT}/health`);
-  console.log(`🔌 WebSocket server ready on ws://localhost:${PORT}`);
-  console.log(`🌐 Environment: ${process.env.NODE_ENV || "development"}`);
-});
+    // Initialize mock data
+    initializeMockData();
+
+    // Start server
+    server.listen(PORT, () => {
+      console.log(`🚀 Lumeris DApp Backend Server running on port ${PORT}`);
+      console.log(`📊 Health check: http://localhost:${PORT}/health`);
+      console.log(`🔌 WebSocket server ready on ws://localhost:${PORT}`);
+      console.log(`🌐 Environment: ${process.env.NODE_ENV || "development"}`);
+    });
+  } catch (error) {
+    console.error("❌ Failed to start server:", error);
+    process.exit(1);
+  }
+};
+
+// Start the server
+startServer();
 
 // Graceful shutdown
-process.on("SIGTERM", () => {
+process.on("SIGTERM", async () => {
   console.log("SIGTERM received, shutting down gracefully");
+  await disconnectDB();
   server.close(() => {
     console.log("Process terminated");
   });

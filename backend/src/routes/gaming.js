@@ -1,13 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const { cache, invalidateCache } = require('../middlewares/cache.js');
+const { CACHE_TTL } = require('../config/constants.js');
 
 // Import mock data functions
-const { 
-  getGames, 
-  getGameById, 
-  getGamingLeaderboard, 
+const {
+  getGames,
+  getGameById,
+  getGamingLeaderboard,
   getUserGamingStats,
-  addTransaction 
+  addTransaction
 } = require('../data/mockData.js');
 
 // Get all games
@@ -51,8 +53,9 @@ router.get('/games/:id', (req, res) => {
   }
 });
 
-// Get gaming leaderboard
-router.get('/leaderboard', (req, res) => {
+// Get gaming leaderboard - Enhanced with caching
+// Caching improves performance by reducing database/computation load
+router.get('/leaderboard', cache(CACHE_TTL.LEADERBOARD), (req, res) => {
   try {
     const leaderboard = getGamingLeaderboard();
     res.json({
@@ -141,8 +144,8 @@ router.post('/games/:id/start', (req, res) => {
   }
 });
 
-// End a game session and claim rewards
-router.post('/games/:id/end', (req, res) => {
+// End a game session and claim rewards - Invalidates leaderboard cache
+router.post('/games/:id/end', invalidateCache(() => 'cache:/api/gaming/leaderboard:anonymous:{}'), (req, res) => {
   try {
     const { userId, sessionId, score, rewards } = req.body;
     const gameId = req.params.id;
