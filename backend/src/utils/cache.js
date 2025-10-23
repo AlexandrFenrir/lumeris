@@ -19,11 +19,15 @@ class CacheManager {
   async initRedis() {
     try {
       const redis = require('redis');
+
+      // Support both REDIS_URL and legacy REDIS_HOST/PORT for backward compatibility
+      const redisUrl = process.env.REDIS_URL ||
+                       (process.env.REDIS_HOST && process.env.REDIS_PORT
+                         ? `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`
+                         : 'redis://localhost:6379');
+
       this.redisClient = redis.createClient({
-        socket: {
-          host: process.env.REDIS_HOST || 'localhost',
-          port: process.env.REDIS_PORT || 6379
-        }
+        url: redisUrl
       });
 
       this.redisClient.on('error', (err) => {

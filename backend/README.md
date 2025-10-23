@@ -308,6 +308,8 @@ Activity tracking and feeds
 - `LOG_LEVEL` - Logging level (default: info)
 - `REDIS_HOST` - Redis host (optional, defaults to localhost)
 - `REDIS_PORT` - Redis port (optional, defaults to 6379)
+- `RATE_LIMIT_WINDOW_MS` - Rate limit time window in ms (default: 900000)
+- `RATE_LIMIT_MAX_REQUESTS` - Max requests per window (default: 100)
 
 ### **Rate Limiting**
 

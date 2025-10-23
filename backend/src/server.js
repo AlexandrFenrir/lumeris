@@ -1,3 +1,8 @@
+// Load environment variables FIRST before any other imports
+const dotenv = require("dotenv");
+const path = require("path");
+dotenv.config({ path: path.join(__dirname, "../.env") });
+
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
@@ -6,7 +11,6 @@ const compression = require("compression");
 const rateLimit = require("express-rate-limit");
 const { createServer } = require("http");
 const { WebSocketServer } = require("ws");
-const dotenv = require("dotenv");
 
 // Import routes
 const gamingRoutes = require("./routes/gaming.js");
@@ -25,8 +29,6 @@ const { initializeMockData } = require("./data/mockData.js");
 
 // Import database connection
 const { connectDB, disconnectDB, getConnectionStatus } = require("./config/database.js");
-
-dotenv.config();
 
 const app = express();
 const server = createServer(app);
